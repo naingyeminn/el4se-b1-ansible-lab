@@ -1,0 +1,8 @@
+---
+- name: Mount an NFS volume for uploads
+  ansible.posix.mount:
+    src: "{{ nfs_server }}:{{ nfs_exported_path }}"
+    path: /var/www/html/wordpress/wp-content/uploads
+    opts: rw,sync,hard
+    state: mounted
+    fstype: nfs

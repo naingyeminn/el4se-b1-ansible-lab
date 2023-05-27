@@ -1,0 +1,25 @@
+---
+dnf_php_module: 'php:7.4'
+required_packages:
+  - httpd-2.4.37-56.module+el8.8.0+1284+07ef499e.6.x86_64
+  - php-mysqlnd-7.4.33-1.module+el8.8.0+1150+ac720675.x86_64
+  - php-xml-7.4.33-1.module+el8.8.0+1150+ac720675.x86_64
+  - php-pdo-7.4.33-1.module+el8.8.0+1150+ac720675.x86_64
+  - php-common-7.4.33-1.module+el8.8.0+1150+ac720675.x86_64
+  - php-mbstring-7.4.33-1.module+el8.8.0+1150+ac720675.x86_64
+  - php-cli-7.4.33-1.module+el8.8.0+1150+ac720675.x86_64
+  - php-fpm-7.4.33-1.module+el8.8.0+1150+ac720675.x86_64
+  - php-json-7.4.33-1.module+el8.8.0+1150+ac720675.x86_64
+  - nfs-utils-2.3.3-59.el8.x86_64
+wordpress_package_url: https://wordpress.org/wordpress-6.2.2.zip
+db_admin_user: root
+db_admin_pass: R0cky8
+wp_db_name: wordpress
+wp_db_user: wp-dbuser
+wp_db_pass: wp@dmin123
+wp_db_host: 192.168.56.114
+wp_db_hostname: db.linuxlab.lan
+httpd_document_root: /var/www/html/wordpress
+nfs_server: 192.168.56.114
+nfs_exported_path: /mnt/uploads
+net_interface: enp0s8

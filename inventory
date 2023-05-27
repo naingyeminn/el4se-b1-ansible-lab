@@ -1,0 +1,16 @@
+lb.linuxlab.lan ansible_host=192.168.56.115
+web1.linuxlab.lan ansible_host=192.168.56.111
+web2.linuxlab.lan ansible_host=192.168.56.112
+web3.linuxlab.lan ansible_host=192.168.56.113
+db.linuxlab.lan ansible_host=192.168.56.114
+
+[lb]
+lb.linuxlab.lan
+
+[web]
+web1.linuxlab.lan
+web2.linuxlab.lan
+web3.linuxlab.lan
+
+[db]
+db.linuxlab.lan

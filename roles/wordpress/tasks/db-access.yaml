@@ -1,0 +1,17 @@
+---
+- name: Install PyMySQL package on {{ wp_db_hostname }}
+  ansible.builtin.dnf:
+    name: python3-PyMySQL
+    state: present
+  delegate_to: "{{ wp_db_hostname }}"
+
+- name: Create database user for {{ ansible_facts['fqdn'] }}
+  community.mysql.mysql_user:
+    name: "{{ wp_db_user }}"
+    host: "{{ ansible_facts[net_interface]['ipv4']['address'] }}"
+    password: "{{ wp_db_pass }}"
+    login_user: "{{ db_admin_user }}"
+    login_password: "{{ db_admin_pass }}"
+    priv: "{{ wp_db_name }}.*:ALL"
+    state: present
+  delegate_to: "{{ wp_db_hostname }}"

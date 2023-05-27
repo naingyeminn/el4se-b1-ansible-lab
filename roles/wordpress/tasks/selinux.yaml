@@ -1,0 +1,23 @@
+---
+- name: install semanage
+  ansible.builtin.dnf:
+    name: policycoreutils-python-utils
+    state: present
+  
+- name: Set httpd_can_network_connect flag on and keep it persistent across reboots
+  ansible.posix.seboolean:
+    name: httpd_can_network_connect
+    state: true
+    persistent: true
+
+- name: Set httpd_can_network_connect_db flag on and keep it persistent across reboots
+  ansible.posix.seboolean:
+    name: httpd_can_network_connect_db
+    state: true
+    persistent: true
+
+- name: Set httpd_use_nfs flag on and keep it persistent across reboots
+  ansible.posix.seboolean:
+    name: httpd_use_nfs
+    state: true
+    persistent: true

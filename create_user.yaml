@@ -1,0 +1,21 @@
+---
+- name: create ansible user
+  hosts: all
+  tasks:
+    - name: Add the system user 'ansible'
+      ansible.builtin.user:
+        name: ansible
+        uid: 987
+        system: true
+        create_home: true
+
+    - name: Set password-less sudoer
+      ansible.builtin.copy:
+        content: 'ansible ALL=(ALL) NOPASSWD: ALL'
+        dest: /etc/sudoers.d/ansible
+
+    - name: Set authorized key
+      ansible.posix.authorized_key:
+        user: ansible
+        state: present
+        key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"

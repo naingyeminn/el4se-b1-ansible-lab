@@ -1,0 +1,32 @@
+---
+- name: allow db access
+  ansible.builtin.include_tasks:
+    file: db-access.yaml
+
+- name: enable {{ dnf_php_module }} module
+  shell: dnf module enable {{ dnf_php_module }} -y
+
+- name: install required packages
+  dnf:
+    name: "{{ required_packages }}"
+    state: present
+
+- name: selinux tasks
+  ansible.builtin.include_tasks:
+    file: selinux.yaml
+
+- name: install wordpress
+  ansible.builtin.include_tasks:
+    file: wp-install.yaml
+
+- name: mount nfs
+  ansible.builtin.include_tasks:
+    file: nfs.yaml
+
+- name: create wp-config
+  ansible.builtin.include_tasks:
+    file: wp-config.yaml
+
+- name: start apache
+  ansible.builtin.include_tasks:
+    file: apache.yaml

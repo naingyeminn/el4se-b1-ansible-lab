@@ -1,0 +1,24 @@
+---
+- name: install haproxy
+  ansible.builtin.dnf:
+    name: haproxy
+    state: present
+
+- name: enable and start haproxy
+  ansible.builtin.systemd:
+    name: haproxy
+    state: started
+    enabled: yes
+
+- name: allow http in firewall
+  ansible.posix.firewalld:
+    service: http
+    permanent: true
+    immediate: true
+    state: enabled  
+
+- name: update backend list
+  ansible.builtin.template:
+    src: haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+  notify: reload haproxy service

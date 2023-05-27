@@ -1,0 +1,12 @@
+---
+- name: setup wordpress server
+  hosts: web
+  become: yes
+  roles:
+    - role: wordpress
+
+- name: setup haproxy server
+  hosts: lb
+  become: yes
+  roles:
+    - role: haproxy
